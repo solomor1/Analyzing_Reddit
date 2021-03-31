@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Graphs Results </title>
+
+    <!-- Load c3.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+
+<!-- just need to add some headings and add to framework -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+<script type="text/javascript">// <![CDATA[
+    function loadSpinner(){
+        $("#load").show();
+        $("#page").hide();
+    }
+// ]]></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#load").hide();
+}); </script>
+
+
+
+</head><body>
+
+
+  <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="http://analyzingredditbehaviour.com">Analyzing Reddit Behaviour</a>
+          </div>
+
+
+          <!-- /.navbar-top-links -->
+
+          <div class="navbar-default sidebar" role="navigation">
+              <div class="sidebar-nav navbar-collapse">
+                  <ul class="nav" id="side-menu">
+
+                          <!-- /input-group -->
+                      </li>
+                      <li>
+                          <a href="/result" onclick="loadSpinner();" ><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+
+                      </li>
+                      <li>
+                          <!--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                              <li>
+                                  <a href="#">See Charts</a>
+                              </li>
+
+                          </ul>-->
+                          <a href="/chart" onclick="loadSpinner();"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
+
+                      </li>
+
+                          <!-- /.nav-second-level -->
+
+                      <li class="active">
+                          <!--<a href="#"><i class="fa fa-files-o fa-fw"></i> Word Clouds<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level"> </ul>-->
+                              <li>
+                                <a href="/wordcloud" id="wordcloud" onclick="loadSpinner();"><i class="fas fa-cloud"></i> Dataset Word Cloud </a>
+                              </li>
+                              <li>
+                                  <a href="/wordcloud_sub" onclick="loadSpinner();"><i class="fas fa-cloud"></i> Subreddit Word Clouds</a>
+                              </li>
+
+                          <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/machine_learning" onclick="loadSpinner();"><i class="fa fa-sitemap fa-fw"></i> Machine Learning</a>
+                        </li>
+                    </li>
+
+              </div>
+              <!-- /.sidebar-collapse -->
+          </div>
+          <!-- /.navbar-static-side -->
+      </nav>
+
+      <!-- Page Content -->
+      <div id="page-wrapper">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">Graph Results</h1>
+                      <div id="load"> <img src = "../static/vendor/ajax-loader.gif" style="opacity:0.2; filter:alpha(opacity=40);"/></div> </div>
+                        <div id="page">
+
+                        <div id="containter">
+                          <div id="chart" style="width:150px; float:left"> </div>
+                          <div id="donut" style="margin-left:500px;"></div>
+
+
+                        </div>
+                        <div id="sec_placement" style="width:600; height;200px; float:right;margin-top:150px;">
+                          <p style="width:480px;"> This pie chart shows in what category of Subreddit do the most frequent posters, as seen in the Dashboard, spend the majority of their time.</p>
+                        </div>
+                        <div id="placement" style="width:600px; height:100px;">
+                            <p style="width:480px;margin-top:150px;"> The graph above represents what type of language score results in a higher comment score in terms of assertive, aggressive, passive, sarcastic and references to media/memes. In this context, score refers to how many times other users upvoted or downvoted the comment.</p>
+                        </div>
+
+                        <div id="sub_container" style="width:700px; height:500px;">
+                          <h4 style="margin-top:150px;margin-left: 300px; ">Total # of comments per Subreddit overall</h4>
+                          <div id="subchart" style="width:700px;"></div>
+                        </div>
+                     </div>
+
+                          <script>
+                               var chart = c3.generate({
+
+                                   data: {
+                                       columns: [
+                                           ['Score',{% for item in avgscore %}
+                                             {{item}},
+                                           {% endfor %}],
+
+                                       ],
+                                       type: 'bar',
+                                       colors: {
+                                          Score:  '#f3773e'
+                                       },
+                                       labels: true
+
+                                   },
+
+                                   bar: {
+                                       width : {
+                                         ratio: 0.75
+                                       }
+
+
+                                   },
+                                   size: {
+                                       height: 350,
+                                       width: 480
+                                  },
+
+                                   axis: {
+                                     x: {
+                                         type: 'category',
+                                         label: {
+                                           text: 'Language Style',
+                                           position: 'inner-right'
+
+                                         },
+                                         categories: [{% for item in labels %}
+                                                          "{{item}}",
+                                                        {% endfor %}]
+
+                                      },
+                                     y: {
+                                         max: 40,
+                                         label: {
+                                            text: 'Comment Score',
+                                            position: 'outer-middle'
+                                         }
+
+                                     }
+                                   },
+                                   legend: {
+                                      position: 'right'
+                                   },
+                                   bindto: '#chart'
+
+                               });
+
+
+
+                      // this chart highlights:
+                      // what kind of subreddit category the top commenters within the dataset frequent the most
+                      // categories being: pos, neg, sarc or other
+                           var donutchart = c3.generate({
+                               data: {
+                                   columns: [
+                                     ['Sarcastic ', {{sarc}}],
+                                     ['Negative ', {{neg}}],
+                                     ['Positive  ', {{pos}}],
+                                     ['Other', {{other}}],
+                                   ],
+                                   type: 'donut',
+                                   onclick: function (d,i) { console.log("onclick", d,i); },
+                                   onmouseover: function (d,i) { console.log("onmouseover",d,i);},
+                                   onmouseout: function (d,i) { console.log("onmouseout", d,i);}
+
+                               },
+                               donut: {
+                                    title: "Active Users vs Subreddits",
+                                    position: "top"
+
+                               },
+                               bindto: '#donut'
+                           });
+
+
+                           var sub_chart = c3.generate({
+                               data: {
+                                   columns: [
+                                       ['Comment Count',{% for value in comment_count %}
+                                         {{value}},
+                                       {% endfor %}],
+
+                                   ],
+                                   type: 'bar',
+                                   colors: {
+                                      Score:  '#2cb21f'
+                                   },
+                                   labels: true
+
+                               },
+
+                               bar: {
+                                   width : {
+                                     ratio: 0.75
+                                   }
+
+
+                               },
+                               size: {
+                                   height: 500,
+                                   width: 1000
+                              },
+
+                               axis: {
+                                 x: {
+                                     type: 'category',
+                                     tick: {
+                                         rotate: 75,
+                                         multiline: false,
+                                         culling: {
+                                             max: 5
+                                         }
+                                     },
+                                     label: {
+                                       text: 'Subreddit /r/',
+                                       position: 'outer-center'
+
+                                     },
+                                     categories: [{% for sub in subreddits_list %}
+                                                      "/r/{{sub}}",
+                                                    {% endfor %}]
+
+
+                                  },
+                                 y: {
+                                     max: 15000,
+                                     label: {
+                                        text: 'Comment Count',
+                                        position: 'outer-middle'
+                                     }
+
+                                 }
+                               },
+                               legend: {
+                               //   position: 'bottom'
+                                  position: 'inset',
+                                  inset: {
+                                       anchor: 'top-right',
+                                       x:undefined,
+                                       y: undefined,
+                                        step: undefined
+                                    }
+                               },
+                               bindto: '#subchart'
+
+                           });
+
+                          /* setInterval(function () {
+                             sub_chart.transform('line');
+                           }, 2000);
+
+                           setInterval(function () {
+                              sub_chart.transform('bar');
+                            }, 5000)*/
+
+
+
+
+                        /*   setTimeout(function () {
+                        pie.load({
+                            columns: [
+                                ["sarcasm",{{sarc}}]
+                                ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
+                                ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8],
+                            ]
+                          });
+                    }, 1500);
+
+                    setTimeout(function () {
+                        pie.unload({
+                            ids: 'data1'
+                        });
+                        pie.unload({
+                            ids: 'data2'
+                        });
+                    }, 2500);*/
+
+
+                          //setTimeout(function () {
+                            //  chart.transform('line', 'Comment Score');
+                          //}, 1000);
+
+                       </script>
+
+                  </div>
+                  <!-- /.col-lg-12 -->
+              </div>
+              <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+      </div>
+      <!-- /#page-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+
+
+</body></html>

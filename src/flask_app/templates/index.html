@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Analyzing Reddit Behaviour</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="engine1/jquery.js"></script>
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/jumbotron.css" rel="stylesheet">
+    <!--<link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    -->
+    <script type="text/javascript">// <![CDATA[
+        function loading(){
+            $("#loading").show();
+            $("#content").hide();
+        }
+// ]]></script>
+
+    <script type="text/javascript">
+        function validateTextBox(){
+            var box = document.getElementById("sub");
+            //console.warn("got the click");
+            if(box.value == ""){
+              alert("This field cannot be blank.");
+              $("#loading").hide();
+              $("#content").show();
+              return false;
+              // return can only be true or false, having false stops the on submit
+            }
+        }
+    </script>
+
+</head>
+
+
+
+<body>
+
+
+
+    <div class="container">
+        <div class="header">
+            <nav>
+            </nav>
+
+            <h3 class="text-muted"> <img src="../static/vendor/reddit.jpg" alt="Reddit Logo" style="width:50px; height:60px; display:inline;">   Analyzing Reddit Behaviour</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1>Welcome!</h1>
+            <p>In this web application, you will be able to see some interesting results of analysis that has been performed upon a dataset containing Reddit comments.</p>
+            <p class="lead"></p>
+            <p> Press the button to get started! </p>
+            <div id="loading"> <img src = "../static/vendor/ajax-loader.gif" style="opacity:0.2; filter:alpha(opacity=40);float:right;"/></div>
+              <div id="content">
+            <!-- here is where the user can input their choice of analyzing by sub/user/time -->
+                <!--<form action="http://127.0.0.1:5002/result" method="POST">-->
+                <!---<form action="/result" method="POST">
+                    Enter start time: <b> (YYYY:MM:DD:HR:MIN):</b> <br>
+                    <input type="text" name="StartTime" style="background-color:white;"><br>
+                    Enter end time: <b>(YYYY:MM:DD:HR:MIN):</b> <br>
+                    <input type="text" name="EndTime" style="background-color:white;">--->
+
+                  <!--  <input type="submit" id="submit-form" value="Submit" class="hidden">
+                -->
+                    <a href="/result" class="btn btn-lg btn-success" onclick="loading();"> Let's go! </a>
+                    <!--<input type="submit" class="btn btn-lg btn-success" value="Let's go!" onclick="loading();"-->
+                    <br> <br>
+                    <p> Alternatively, you can query by Subreddit such as <i>StarWars,cute,AskReddit,travel</i> : </p>
+                    <form action="/subreddit_analysis" method="POST" role="form" data-toggle="validator" onsubmit="validateTextBox();">
+                        <input type="text" id="sub" class="form-control" name="Subreddit" placeholder="Enter Subreddit..." style="background-color:white;" required><br><br>
+
+                        <input type="submit" class="btn btn-lg btn-success" value="Let's go!" onclick="loading(); return validateTextBox();">
+
+                  </form>
+              <br>
+            </div>
+
+          </p>
+        </div>
+
+
+
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <h2>What is this?</h2>
+              <p>Welcome to my web application! I have developed this webapp as part of my final year project to perform some analsis upon user behaviour on Reddit. Please note that depending on the amount of data, it may take some time.</p>
+            </div>
+
+            <div class="col-md-4" style="float:right;">
+              <h2>The Journey</h2>
+              <p>If you're interested in viewing the source code or reading the blog about the whole development process, use the link below!</p>
+              <a href="https://gitlab.computing.dcu.ie/solomor2/2018-ca400-solomor2"> Gitlab </a>
+            </div>
+          </div>
+
+
+
+
+        <footer class="footer">
+            <p>&copy; Rachel Solomon 2018</p>
+        </footer>
+
+    </div>
+
+
+
+</body>
+
+</html>
